@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT app:app
+web: flask db upgrade; gunicorn task_list:'create_app()'
