@@ -61,6 +61,9 @@ if 'now_height' not in st.session_state:
     st.session_state.now_height = None
 
 # 身長
+st.markdown( f"<h1 style='color: #809C51;'>せたけん</h1>", unsafe_allow_html=True)
+
+# 身長
 st.markdown(
     f"<h1 style='text-align: center; color: #809C51;'> \
     あなたの適正身長は\
@@ -110,4 +113,5 @@ with st.expander("オプション"):
 
 # 参考
 st.markdown("作者： [@fujitako](https://twitter.com/fujitako03)")
+st.markdown("解説記事： [体重を入力すると適正「身長」を教えてくれるアプリを作った](https://qiita.com/fujit33/items/fa40a79b905d31e8449c)")
 st.markdown("参考： [日本医師会](https://www.med.or.jp/forest/health/eat/11.html)")
