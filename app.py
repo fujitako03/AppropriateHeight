@@ -17,6 +17,15 @@ def calc_appropriate_height(weight: float) -> int:
     return round(height)
 
 def get_advice(now_height: int, best_height: int) -> str:
+    """身長の差分に応じたアドバイスを変えす
+
+    Args:
+        now_height (int): 今の身長
+        best_height (int): 適正身長
+
+    Returns:
+        str: アドバイス
+    """
     diff = best_height - now_height
     base_text = f"あと{diff}cm!"
 
@@ -25,6 +34,7 @@ def get_advice(now_height: int, best_height: int) -> str:
     elif 1 <= diff <= 4:
         return base_text + "あとちょっとです。牛乳たくさん飲んで、立つことを控えましょう"
     elif diff == 0:
+        st.balloons() # 風船を飛ばす
         return "素晴らしい！今後身長を伸ばさないように心がけましょう"
     elif diff <= -1:
         return base_text + "身長が高すぎます。常にダンベルを持ち運ぶことを心がけましょう"
@@ -36,7 +46,7 @@ def weight_slider_change():
     st.session_state.best_height = calc_appropriate_height(st.session_state.weight)
 
 def height_slider_change():
-    """身長が更新されるたびに体重と適正身長を更新
+    """身長スライダーが更新されるたびに現在身長を更新
     """
     st.session_state.now_height = st.session_state.height_slider 
 
@@ -55,9 +65,8 @@ st.markdown(
     f"<h1 style='text-align: center; color: #809C51;'> \
     あなたの適正身長は\
     </h1>", unsafe_allow_html=True)
-# 身長
 st.markdown(
-    f"<h1 style='text-align: center; color: #528540; font-size: 7em; margin-bottom: -100;'> \
+    f"<h1 style='text-align: center; color: #528540; font-size: 7em;'> \
     {st.session_state.best_height}\
     </h1>", unsafe_allow_html=True)
 st.markdown(
@@ -82,8 +91,7 @@ if st.session_state.now_height:
     st.text(advice_text)
     st.image("./eiyoshi.png", width=100)
 
-
-# option
+# オプション
 with st.expander("オプション"):
     st.slider(
         '現在の身長を入力してね', 
@@ -97,7 +105,7 @@ with st.expander("オプション"):
     st.text("※性別は適正体重と無関係です")
 
     # 干支
-    gender = st.radio("干支", ("未回答", "子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥", "女性"))
+    gender = st.radio("干支", ("未回答", "子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"))
     st.text("※干支は適正体重と無関係です")
 
 # 参考
